@@ -70,9 +70,9 @@ void TrafficLight::cycleThroughPhases()
     // to the message queue using move semantics. The cycle duration should be a random value between 4 and 6 seconds. 
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
     std::random_device device;
-    std::mt19937_64 generator(device()); // PRNG as in https://diego.assencio.com/?index=6890b8c50169ef45b74db135063c227c
+    std::mt19937_64 generator(device()); // PRNG as in https://diego.assencio.com/?index=6890b8c50169ef45b74db135063c227c
   
-    std::uniform_int_distribution<int> distribution(4000,6000); 
+    std::uniform_int_distribution<int> distribution(4000,6000); 
     int duration = distribution(generator);  
     
     auto timestamp = std::chrono::system_clock::now(); // timestamp on enter
@@ -82,7 +82,7 @@ void TrafficLight::cycleThroughPhases()
    std::this_thread::sleep_for(std::chrono::milliseconds(1)); // slow down the endless loop a bit as in the exercises
       
    auto last_timestamp = std::chrono::system_clock::now(); // timestamp on enter  
-   auto msecs_from_last_timestamp = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count(); // based on stackoverflow answers https://stackoverflow.com/a/6012671
+   auto msecs_from_last_timestamp = std::chrono::duration_cast<std::chrono::milliseconds>( last_timestamp - timestamp ).count(); // based on stackoverflow answers https://stackoverflow.com/a/6012671
    
    if (duration < msecs_from_last_timestamp) 
    {
